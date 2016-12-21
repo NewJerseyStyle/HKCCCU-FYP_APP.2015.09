@@ -86,7 +86,7 @@ public class net {
         JSONArray jsonArray = new JSONArray();
         for (String val : timeTable) {
             if (val.startsWith("</TR><TR><TD class=\"ctt-matrix-td-time\">")) {
-                time = val.substring(40, 11);
+                time = val.substring(40, 51);
                 timeCount = Integer.parseInt(time.substring(0, time.indexOf(":"))) - 8;
                 day = 0;
             } else if (val.startsWith("<TD class=\"ctt-matrix-cell-blank\"")) {
@@ -98,8 +98,8 @@ public class net {
                 while (summary[day][timeCount]) {
                     day++;
                 }
-                String duration = val.substring(42, 1);
-                for (int i = 0; i < Integer.parseInt(val.substring(42, 1)); i++) {
+                String duration = val.substring(42, 43);
+                for (int i = 0; i < Integer.parseInt(val.substring(42, 43)); i++) {
                     summary[day][timeCount + i] = true;
                 }
                 String theCourse = val.substring(val.indexOf(" valign=top>") + 12);
@@ -130,7 +130,7 @@ public class net {
                 while (summary[day][timeCount]) {
                     day++;
                 }
-                String duration = val.substring(44, 1);
+                String duration = val.substring(44, 45);
                 for (int i = 0; i < Integer.parseInt(duration); i++) {
                     summary[day][timeCount + i] = true;
                 }
@@ -253,11 +253,15 @@ public class net {
             }
         //}
         res = post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_id="+select, "https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl");
-        String data = res.trim().replaceAll(" +", " ").replaceAll("\n+", "");
-        if (data.contains("You are not currently registered for the term.")) {
+        if (res == null){
             response = new JSONObject();
             return;
         }
+        if (res.contains("You are not currently registered for the term.")) {
+            response = new JSONObject();
+            return;
+        }
+        String data = res.trim().replaceAll(" +", " ").replaceAll("\n+", "");
         data = betweenStr(data, "<H2>Student Detail Schedule</H2>", "<A HREF=\"javascript:history.go(-1)\" onMouseOver=\"window.status='Return to Previous'; return true\" onFocus=\"window.status='Return to Previous'; return true\" onMouseOut=\"window.status=''; return true\"onBlur=\"window.status=''; return true\">Return to Previous</A>", EXCL);
         JSONObject jsonObject = new JSONObject();
         JSONArray courseDetail = new JSONArray();
@@ -424,7 +428,7 @@ public class net {
                     String[] c = x.split("<TR>");
                     for (String y : c) {
                         y = y.replaceAll("</FONT></TD><TD CLASS=\"pldefault\"NOWRAP width=450 bgcolor=><FONT COLOR=>", " ");
-                        String d = y.substring(60, y.indexOf("</FONT></TD>") - 60);
+                        String d = y.substring(60, y.indexOf("</FONT></TD>"));
                         if (!d.contains("<") && !d.contains(">") && Character.isUpperCase(d.charAt(0))) {
                             JSONObject aCourse = new JSONObject();
                             aCourse.put("Name", d);
@@ -490,7 +494,7 @@ public class net {
             }
             if (x.startsWith("<TD COLSPAN=\"5\" BGCOLOR=\"#ccccff\"><H4>")) {
                 String balance = x.substring(x.indexOf("<TD ALIGN=\"right\" BGCOLOR=\"#ccccff\"><H4>"));
-                balance = balance.substring(40, balance.indexOf("</H4></TD></TR>") - 40).replaceAll(" +", "");
+                balance = balance.substring(40, balance.indexOf("</H4></TD></TR>")).replaceAll(" +", "");
                 try {
                     singlePay.put("balance", balance);
                 } catch (JSONException e) {

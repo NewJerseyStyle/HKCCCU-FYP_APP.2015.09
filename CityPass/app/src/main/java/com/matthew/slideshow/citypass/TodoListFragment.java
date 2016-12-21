@@ -174,6 +174,8 @@ public class TodoListFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
            /* pDialog = new ProgressDialog(getContext());
+            pDialog.setIndeterminate(true);
+            pDialog.setIndeterminateDrawable(getContext().getResources().getDrawable(R.drawable.my_spinner));
             pDialog.setMessage("Deleting Record...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);

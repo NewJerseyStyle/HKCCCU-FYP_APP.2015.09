@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        login = new net(MainActivity.this);
         new TestNetwork().execute();
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -164,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             progressDialog = ProgressDialog.show(MainActivity.this, "", "Loading...");
             progressDialog.setProgressStyle(R.style.AppTheme_Dark_Dialog);
-            //progressDialog.setIndeterminate(true);
-            //progressDialog.setIndeterminateDrawable(MainActivity.this.getResources().getDrawable(R.drawable.my_spinner));
+            progressDialog.setIndeterminate(true);
+            progressDialog.setIndeterminateDrawable(MainActivity.this.getResources().getDrawable(R.drawable.my_spinner));
             progressDialog.show();
             logged = false;
             //suppose need the user-typed EID and password
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
     class TestNetwork extends AsyncTask<String, String, String> {
         private ProgressDialog progressDialog;
         private AlertDialog ad;
+        private boolean bool;
 
         @Override
         protected void onPreExecute() {
@@ -234,12 +236,26 @@ public class MainActivity extends AppCompatActivity {
             }
             progressDialog = ProgressDialog.show(MainActivity.this, "", "Loading...");
             progressDialog.setProgressStyle(R.style.AppTheme_Dark_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setIndeterminateDrawable(MainActivity.this.getResources().getDrawable(R.drawable.my_spinner));
             progressDialog.show();
         }
 
         @Override
         protected String doInBackground(String... args) {
-            if (!isNetworkAvailable()) {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            bool = activeNetworkInfo != null && activeNetworkInfo.isConnected();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            if (!bool) {
                 ad = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Fail-與伺服器通訊失敗")
                         .setMessage("請確認電波訊號。")
@@ -259,14 +275,6 @@ public class MainActivity extends AppCompatActivity {
                         new TestNetwork().execute();
                     }
                 }, 2000);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
             }
         }
     }

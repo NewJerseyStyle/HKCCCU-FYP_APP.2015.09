@@ -579,6 +579,8 @@ public class NavigationDrawerFragment extends Fragment {
         protected void onPreExecute() {
             dialog = new ProgressDialog(getActivity());
 
+            dialog.setIndeterminate(true);
+            dialog.setIndeterminateDrawable(getActivity().getResources().getDrawable(R.drawable.my_spinner));
             dialog.setMessage("Loading...");
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();

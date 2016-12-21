@@ -277,6 +277,8 @@ public class TimetableFragment extends Fragment {
             if (firstTime) {
                 dialog = new ProgressDialog(getActivity(), R.style.AppTheme_Dark_Dialog);
 
+                dialog.setIndeterminate(true);
+                dialog.setIndeterminateDrawable(getActivity().getResources().getDrawable(R.drawable.my_spinner));
                 dialog.setMessage("It's just loading....");
                 dialog.setCancelable(false);
 
