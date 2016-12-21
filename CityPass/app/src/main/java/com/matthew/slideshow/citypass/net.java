@@ -519,6 +519,7 @@ public class net {
 
     private void login2AIMS() {
         error = false;
+        response = null;
         if (name.isEmpty() || pass.isEmpty()) {
             error = true;
             return;
@@ -584,7 +585,6 @@ public class net {
 
     public JSONObject getResponse() {
         JSONObject tmp = response;
-        response = null;
         return tmp;
     }
 
