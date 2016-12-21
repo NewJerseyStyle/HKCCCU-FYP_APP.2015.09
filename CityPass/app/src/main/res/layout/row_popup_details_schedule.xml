@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:id="@+id/linearlayout"
+    android:layout_margin="2dp">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_list_date"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:layout_marginBottom="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Associated Term"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="11dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Assigned Instructor"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="10dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asso term"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textView_associated_term"
+                android:textSize="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="assigned_instructor"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textView_assigned_instructor"
+                android:textSize="10dp" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grade Mode"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date Range"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="grade mode"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textView_grade_mode"
+                android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="date range"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textView_date_range"
+                android:textSize="11dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Level"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="10dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campus"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="10dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="level"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textView_level"
+                android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="campus"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:id="@+id/textView_campus"
+                android:textSize="11dp" />
+        </TableRow>
+
+
+    </TableLayout>
+
+</LinearLayout>

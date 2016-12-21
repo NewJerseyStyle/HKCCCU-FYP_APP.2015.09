@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Edit Printing Properties"
+                android:id="@+id/my_details_label"
+                android:paddingTop="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:layout_width="300dp"
+                    android:layout_height="55dp"
+                    android:id="@+id/spinner_printer"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Copies"
+                    android:id="@+id/textView_copies"
+                    android:layout_below="@+id/spinner_printer"
+                    android:layout_alignLeft="@+id/spinner_printer"
+                    android:layout_alignStart="@+id/spinner_printer"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Print Type"
+                    android:id="@+id/textView_print_type"
+                    android:layout_below="@+id/spinner_printer"
+                    android:layout_toRightOf="@+id/textView_copies"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <Spinner
+                    android:layout_width="145dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/spinner_copies"
+                    android:layout_below="@+id/textView_copies"
+                    android:layout_alignLeft="@+id/spinner_printer"
+                    android:layout_alignStart="@+id/spinner_printer" />
+
+                <Spinner
+                    android:layout_width="145dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/spinner_print_type"
+                    android:layout_above="@+id/textView_orientation"
+                    android:layout_alignRight="@+id/spinner_printer"
+                    android:layout_alignEnd="@+id/spinner_printer" />
+
+                <TextView
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Combination"
+                    android:id="@+id/textView_combination"
+                    android:layout_below="@+id/spinner_copies"
+                    android:layout_alignLeft="@+id/spinner_copies"
+                    android:layout_alignStart="@+id/spinner_copies"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Orientation"
+                    android:id="@+id/textView_orientation"
+                    android:layout_below="@+id/spinner_copies"
+                    android:layout_toRightOf="@+id/textView_combination"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <Spinner
+                    android:layout_width="145dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/spinner_combination"
+                    android:layout_below="@+id/textView_combination"
+                    android:layout_alignLeft="@+id/textView_combination"
+                    android:layout_alignStart="@+id/textView_combination" />
+
+                <Spinner
+                    android:layout_width="145dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/spinner_orientation"
+                    android:layout_alignTop="@+id/spinner_combination"
+                    android:layout_alignLeft="@+id/textView_orientation"
+                    android:layout_alignStart="@+id/textView_orientation" />
+
+                <TextView
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content"
+                    android:text="Binding Position"
+                    android:id="@+id/textView_binding_position"
+                    android:layout_below="@+id/spinner_combination"
+                    android:layout_alignLeft="@+id/spinner_combination"
+                    android:layout_alignStart="@+id/spinner_combination"
+                    android:layout_marginTop="10dp" />
+
+                <Spinner
+                    android:layout_width="145dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/spinner_binding_position"
+                    android:layout_below="@+id/textView_binding_position"
+                    android:layout_alignLeft="@+id/textView_binding_position"
+                    android:layout_alignStart="@+id/textView_binding_position"
+                    android:layout_marginBottom="40dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="OK"
+        android:id="@+id/button_ok"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
+        android:textColor="@color/white"
+        android:background="@color/holo_blue_dark" />
+
+</LinearLayout>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:background="#ffffff">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notification"
+                android:id="@+id/textView_notification"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/relativeLayout_send_notification"
+                android:background="@drawable/list_divider">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Send Notifications"
+                    android:id="@+id/textView_send_notification"
+                    android:textSize="17dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=" "
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/textView_send_notification"
+                    android:id="@+id/textView321" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch_notification"
+                    android:layout_toRightOf="@+id/textView_send_notification"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Turn ON/OFF the notification of this application"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12dp"
+                    android:id="@+id/textView323"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Timetable"
+                android:id="@+id/textView_timetable"
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp" />
+
+
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/relativeLayout_timetable"
+                android:background="@drawable/list_divider">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Timetable Notifications"
+                    android:id="@+id/textView_timetable_share"
+                    android:textSize="17dp"
+                    android:layout_alignBaseline="@+id/switch_timetable"
+                    android:layout_alignBottom="@+id/switch_timetable"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text=" "
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/textView_timetable_share"
+                    android:id="@+id/textView325" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch_timetable"
+                    android:layout_toRightOf="@+id/textView_timetable_share"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Turn ON/OFF the Timetable Notification"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12dp"
+                    android:id="@+id/textView324"
+                    android:layout_alignTop="@+id/textView325"
+                    android:layout_toRightOf="@+id/textView325"
+                    android:layout_toEndOf="@+id/textView325" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+
+    <!--<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:id="@+id/linearlayout_content_notification">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Content settings"
+        android:id="@+id/textView_content_notification" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Set the content that appear in notifications"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12dp"        />
+    </LinearLayout>-->
+
+
+    <!--<LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/linearlayout_add_parameter">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Add Parameter"
+                android:id="@+id/textView_add_parameter" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Assign the right to other to read your timetable"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12dp"        />
+        </LinearLayout>-->

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="AST20105 Data Structure  &amp; Algorithm"
+        android:id="@+id/textView_list_date"
+        android:background="@color/holo_blue_dark"
+        android:textColor="@color/white"
+        android:paddingLeft="10dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="A+"
+        android:textSize="13dp"
+        android:id="@+id/textView_grade"
+        android:paddingLeft="12dp"
+        android:paddingRight="5dp"
+        android:background="@color/white"
+        android:textStyle="bold"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
+</LinearLayout>

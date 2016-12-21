@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relativeLayout1">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/wrapper">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Course Name"
+                android:textSize="18dp"
+                android:id="@+id/textView_list_date"
+
+                android:background="@color/holo_blue_dark"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:singleLine="true" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_list_date"
+                android:id="@+id/relativeLayout2"
+                android:padding="1dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date: 20-05-2016"
+                    android:textSize="14dp"
+                    android:id="@+id/textView_date"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="30dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="0dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_time"
+                    android:text="Time: 10:00-12:00"
+                    android:textSize="14dp"
+                    android:layout_toRightOf="@+id/textView_date"
+                    android:background="@color/white"
+                    android:layout_marginTop="0dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="10dp" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="Place: Chan Tai Ho Muti-Purpose Hall"
+                    android:id="@+id/textView_place"
+                    android:layout_below="@+id/textView_date"
+                    android:paddingLeft="10dp"
+                    android:background="@color/white"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="Seat no: 165"
+                    android:id="@+id/textView_seatno"
+                    android:layout_below="@+id/textView_place"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="18dp"
+                    android:background="@color/white"
+                    android:textSize="14dp"
+                    android:paddingTop="10dp"
+                    android:layout_marginBottom="4dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+
+    <!--android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"-->

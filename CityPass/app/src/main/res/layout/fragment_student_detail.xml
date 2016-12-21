@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:isScrollContainer="true"
+
+    android:weightSum="1">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="My Details"
+                android:id="@+id/my_details_label"
+
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/title"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                card_view:cardBackgroundColor="@color/cardview_light_background"
+                card_view:cardCornerRadius="1dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+
+
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Student Name"
+                        android:id="@+id/student_name_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginTop="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_student_name"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Student ID"
+                        android:id="@+id/student_id_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_student_id"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Electronic ID"
+                        android:id="@+id/electronic_id_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_electronic_id"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:id="@+id/email_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_email"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Department"
+                        android:id="@+id/department_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_department"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Major"
+                        android:id="@+id/major_label"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_major"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Programme"
+                        android:id="@+id/programme_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_programme"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Campus"
+                        android:id="@+id/campus_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_campus"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Academic Standing"
+                        android:id="@+id/academic_standing_label"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:paddingLeft="6dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@color/holo_blue_dark"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="It&apos;s just loading..."
+                        android:id="@+id/textView_academic_standing"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="#ffffff" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

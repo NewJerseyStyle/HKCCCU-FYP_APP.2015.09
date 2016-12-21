@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardCornerRadius="1dp"
+        android:id="@+id/wrapper"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:paddingBottom="15dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="00:00-00:01"
+                android:textSize="14dp"
+                android:padding="5dp"
+                android:id="@+id/textView_time"
+                android:layout_marginLeft="65dp"
+                android:layout_marginStart="65dp"
+                android:layout_alignTop="@+id/imageView3"
+                android:layout_toRightOf="@+id/textView328"
+                android:layout_toEndOf="@+id/textView328" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="AC2 2000"
+                android:textSize="14dp"
+                android:padding="5dp"
+                android:id="@+id/textView_location"
+                android:layout_below="@+id/textView327"
+                android:layout_alignLeft="@+id/textView_time"
+                android:layout_alignStart="@+id/textView_time" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To-do List"
+                android:id="@+id/textView_name"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white"
+                android:background="@color/holo_blue_dark"
+                android:textStyle="bold"
+                android:textSize="19dp"
+                android:shadowColor="#dee0e0e0"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="14dp"
+                android:text="Time:"
+                android:padding="5dp"
+                android:id="@+id/textView327"
+                android:layout_alignBottom="@+id/imageView3"
+                android:layout_toRightOf="@+id/imageView3"
+                android:layout_toEndOf="@+id/imageView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="14dp"
+                android:text="Location"
+                android:padding="5dp"
+                android:id="@+id/textView328"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/imageView4"
+                android:layout_toEndOf="@+id/imageView4" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="25dp"
+                android:id="@+id/imageView3"
+                android:src="@drawable/time"
+                android:layout_above="@+id/textView328"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="17dp"
+                android:layout_marginStart="17dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:id="@+id/imageView4"
+                android:src="@drawable/location"
+                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout><!--
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/child_textview2"
+            android:textSize="12dp"
+
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/child_textview3"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+    -->

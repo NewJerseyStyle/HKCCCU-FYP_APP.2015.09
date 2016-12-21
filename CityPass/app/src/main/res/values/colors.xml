@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="holo_blue_dark2">#7DC2F3</color>
+    <color name="holo_blue_dark">#0f93f2</color>
+    <color name="view_divider_color">#BABABA</color>
+    <color name="view_divider_color_2">#DADADA</color>
+    <color name="blue">#2E9AFE</color>
+    <color name="red">#FF0000</color>
+    <color name="black">#343434</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="today">#3FA9F5</color>
+    <color name="greyed_out">#c7c7c7</color>
+    <color name="reded_out">#ff7f7f</color>
+    <color name="blacked_out">#777777</color>
+    <color name="weekday_out">#8D8D8D</color>
+
+    <color name="summer">#DDEFFD</color>
+    <color name="fall">#DDEFFD</color>
+    <color name="winter">#DDEFFD</color>
+    <color name="spring">#DDEFFD</color>
+
+
+    <color name="action_bar_background">#46AAF4</color>
+    <color name="notification_bar_color">#0f93f2</color>
+
+</resources>

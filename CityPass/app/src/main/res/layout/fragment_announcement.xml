@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Course List"
+        android:id="@+id/my_details_label"
+
+        android:layout_marginTop="10dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/title"
+        android:textStyle="bold" />
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignLeft="@+id/my_details_label"
+        android:layout_alignStart="@+id/my_details_label"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/my_details_label"
+        android:layout_alignEnd="@+id/my_details_label"
+        android:layout_below="@+id/my_details_label">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/holiday_list"
+            android:listSelector="@android:color/transparent"
+
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

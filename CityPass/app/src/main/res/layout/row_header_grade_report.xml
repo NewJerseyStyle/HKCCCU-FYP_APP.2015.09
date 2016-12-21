@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Semester A 2016/17"
+        android:id="@+id/textView_semester"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:paddingTop="18dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="18dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/holo_blue_dark"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp" />
+</LinearLayout>
