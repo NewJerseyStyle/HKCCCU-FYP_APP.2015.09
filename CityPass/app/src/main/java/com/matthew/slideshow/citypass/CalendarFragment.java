@@ -1,7 +1,5 @@
 package com.matthew.slideshow.citypass;
 
-
-import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,19 +14,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.component.CalendarComponent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +52,7 @@ public class CalendarFragment extends Fragment {
     private LoginRW loginRW = null;
     private HashSet<Date> eventssave = new HashSet<>();
     private FragmentManager fragmentManager;
-    private WebView webView;
+    private net net;
     private String holidayData;
 
 
@@ -84,6 +89,9 @@ public class CalendarFragment extends Fragment {
     }
 
     class InitializeData extends AsyncTask<String, String, String> {
+        private final boolean EXCL = false;
+        private final boolean INCL = true;
+
         @Override
         protected String doInBackground(String... args) {
             int icount = holidayRW.getCountAllHoliday();
@@ -120,17 +128,184 @@ public class CalendarFragment extends Fragment {
                     holidayRW = new HolidayRW(getActivity().getApplicationContext());
                 String rawHolidayData = null;
                 //rawHolidayData is the point
-                webView.loadUrl("http://202.125.255.5/portal_reader.php");
-                while (holidayData == null) {
-                    if (holidayData != null) rawHolidayData = holidayData;
-                    try {
-                        Thread.sleep(200L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+
+                String target = "http://www6.cityu.edu.hk/arro/files/file/hk/calendar/CityU_Academic_Calendar.ics";
+                String reference = "https://www.cityu.edu.hk/portal/";
+                String cityu_portal = net.get(target, reference);
+
+                String page = betweenStr(cityu_portal, "<div class=\"item month-", "<a href=\"http://www6.cityu.edu.hk/arro/files/file/hk/calendar/CityU_Academic_Calendar.ics\"><i class=\"icon-download\"></i> Download iCalendar (.ics)</a>", EXCL);
+
+                Calendar calendar = null;
+                try {
+                    calendar = (new CalendarBuilder()).build(new StringReader(page));
+                } catch (IOException | ParserException e) {
+                    e.printStackTrace();
+                }
+                assert calendar != null;
+                HashMap<String, List<HashMap<String, String>>> date_holiday_array = new HashMap<>();
+                List<HashMap<String, String>> holiday_array = new ArrayList<>();
+                List<HashMap<String, String>> calendar_holiday = new ArrayList<>();
+                for (CalendarComponent value: calendar.getComponents()
+                     ) {
+                    HashMap<String, String> single = new HashMap<>();
+                    String date_detail_s = value.getProperty(Property.DTSTART).getValue().substring(6);
+                    String date_detail_e = value.getProperty(Property.DTEND).getValue().substring(6);
+                    date_detail_e = String.valueOf(Integer.parseInt(date_detail_e) - 1);
+                    int flag = Integer.parseInt(date_detail_s) - Integer.parseInt(date_detail_e);
+                    if (flag > 0) {
+                        switch (value.getProperty(Property.DTSTART).getValue().substring(4, 2)) {
+                            case "01":
+                                date_detail_s += " Jan ";
+                                break;
+
+                            case "02":
+                                date_detail_s += " Feb ";
+                                break;
+
+                            case "03":
+                                date_detail_s += " Mar ";
+                                break;
+
+                            case "04":
+                                date_detail_s += " Apr ";
+                                break;
+
+                            case "05":
+                                date_detail_s += " May ";
+                                break;
+
+                            case "06":
+                                date_detail_s += " Jun ";
+                                break;
+
+                            case "07":
+                                date_detail_s += " Jul ";
+                                break;
+
+                            case "08":
+                                date_detail_s += " Aug ";
+                                break;
+
+                            case "09":
+                                date_detail_s += " Sep ";
+                                break;
+
+                            case "10":
+                                date_detail_s += " Oct ";
+                                break;
+
+                            case "11":
+                                date_detail_s += " Nov ";
+                                break;
+
+                            case "12":
+                                date_detail_s += " Dec ";
+                                break;
+
+                            default:
+                                // code...
+                                break;
+                        }
+                        switch (value.getProperty(Property.DTEND).getValue().substring(4, 2)) {
+                            case "01":
+                                date_detail_e += " Jan ";
+                                break;
+
+                            case "02":
+                                date_detail_e += " Feb ";
+                                break;
+
+                            case "03":
+                                date_detail_e += " Mar ";
+                                break;
+
+                            case "04":
+                                date_detail_e += " Apr ";
+                                break;
+
+                            case "05":
+                                date_detail_e += " May ";
+                                break;
+
+                            case "06":
+                                date_detail_e += " Jun ";
+                                break;
+
+                            case "07":
+                                date_detail_e += " Jul ";
+                                break;
+
+                            case "08":
+                                date_detail_e += " Aug ";
+                                break;
+
+                            case "09":
+                                date_detail_e += " Sep ";
+                                break;
+
+                            case "10":
+                                date_detail_e += " Oct ";
+                                break;
+
+                            case "11":
+                                date_detail_e += " Nov ";
+                                break;
+
+                            case "12":
+                                date_detail_e += " Dec ";
+                                break;
+
+                            default:
+                                // code...
+                                break;
+                        }
+                    }
+                    if (value.getProperty(Property.DTSTART).getValue().substring(0, 4).equals(value.getProperty(Property.DTEND).getValue().substring(0, 4))) {
+                        date_detail_s += value.getProperty(Property.DTSTART).getValue().substring(0, 4);
+                        date_detail_e += value.getProperty(Property.DTEND).getValue().substring(0, 4);
+                    }
+                    String date_detail = date_detail_s;
+                    if (flag > 0) {
+                        date_detail += " - "+date_detail_e;
+                    }
+                    single.put("year",value.getProperty(Property.DTSTART).getValue().substring(0, 4));
+                    single.put("month",value.getProperty(Property.DTSTART).getValue().substring(4, 2));
+                    single.put("date_detail",date_detail);
+                    single.put("holiday_or_event_name", value.toString().contains("SUMMARY;LANGUAGE=en-us")?value.getProperty("SUMMARY;LANGUAGE=en-us").getValue():value.getProperty("SUMMARY;LANGUAGE=zh-hk").getValue());
+                    if (value.toString().contains("CATEGORIES")) {
+                        single.put("type", "H");
+                    }else{
+                        if (page.contains(single.get("holiday_or_event_name"))) {
+                            single.put("type", "E");
+                        }else{
+                            continue;
+                        }
+                    }
+                    holiday_array.add(single);
+                    String date = value.getProperty(Property.DTSTART).getValue().substring(0, 4)+"-"+value.getProperty(Property.DTSTART).getValue().substring(4, 2)+"-"+value.getProperty(Property.DTSTART).getValue().substring(6, 2);
+                    String end_date = value.getProperty(Property.DTEND).getValue().substring(0, 4)+"-"+value.getProperty(Property.DTEND).getValue().substring(4, 2)+"-"+value.getProperty(Property.DTEND).getValue().substring(6, 2);
+                    if (single.containsKey("type")) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            while (sdf.parse(date).before(sdf.parse(end_date))) {
+                                HashMap<String, String> tmp = new HashMap<>();
+                                tmp.put("date", date);
+                                tmp.put("type", single.get("type"));
+                                calendar_holiday.add(tmp);
+                                java.util.Calendar c = java.util.Calendar.getInstance();
+                                c.setTime(sdf.parse(date));
+                                c.add(java.util.Calendar.DATE, 1);
+                                date = sdf.format(c.getTime());
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
+                date_holiday_array.put("holiday", holiday_array);
+                date_holiday_array.put("calendar_holiday", calendar_holiday);
                 try {
-                    JSONObject jsonObject = new JSONObject(rawHolidayData);
+                    JSONObject jsonObject = new JSONObject(date_holiday_array);
                     String str = jsonObject.getString(DATA);
                     JSONObject j0 = new JSONObject(str);
                     JSONArray holidayArray = j0.getJSONArray(HOLIDAY);
@@ -190,6 +365,16 @@ public class CalendarFragment extends Fragment {
 
 
             });
+        }
+
+        private String betweenStr(String target, String a, String b, boolean incl) {
+            Log.d("Network", target);
+            if (incl) {
+                target = target.substring(target.indexOf(a));
+                return target.substring(0, target.indexOf(b) + b.length());
+            }
+            target = target.substring(target.indexOf(a) + a.length());
+            return target.substring(0, target.indexOf(b));
         }
     }
 

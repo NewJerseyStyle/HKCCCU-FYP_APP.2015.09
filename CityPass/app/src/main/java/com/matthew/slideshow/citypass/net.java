@@ -588,7 +588,7 @@ public class net {
         return error;
     }
 
-    private String get(String url, String ref) {
+    public String get(String url, String ref) {
         last_url = url;
         try {
             myClient = (HttpURLConnection) (new URL(url)).openConnection();
