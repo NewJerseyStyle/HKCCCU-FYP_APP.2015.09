@@ -30,7 +30,7 @@ public class StudentDetailFragment extends Fragment {
     private TextView tMajor;
     private TextView tProgramme;
     private TextView tCampus;
-    private TextView tAS;
+    //private TextView tAS;
 
     private StudentDetailRW studentDetailRW = null;
     private LoginRW loginRW = null;
@@ -147,7 +147,7 @@ public class StudentDetailFragment extends Fragment {
             tMajor = (TextView) rootView.findViewById(R.id.textView_major);
             tProgramme = (TextView) rootView.findViewById(R.id.textView_programme);
             tCampus = (TextView) rootView.findViewById(R.id.textView_campus);
-            tAS = (TextView) rootView.findViewById(R.id.textView_academic_standing);
+            //tAS = (TextView) rootView.findViewById(R.id.textView_academic_standing);
 
 
             tStudentName.setText(studentDetail.getStudentName());
@@ -158,7 +158,7 @@ public class StudentDetailFragment extends Fragment {
             tMajor.setText(studentDetail.getMajor());
             tProgramme.setText(studentDetail.getProgramme());
             tCampus.setText(studentDetail.getCampus());
-            tAS.setText(studentDetail.getAS());
+            //tAS.setText(studentDetail.getAS());
 
             if (dialog.isShowing())
                 dialog.dismiss();

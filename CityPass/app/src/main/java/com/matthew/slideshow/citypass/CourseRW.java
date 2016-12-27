@@ -60,7 +60,7 @@ public class CourseRW {
           /*15*/ + LESSON_DATE_RANGE + " TEXT)";
 
 
-    private SQLiteDatabase db;
+    private final SQLiteDatabase db;
 
 
     public CourseRW(Context context) {
@@ -227,7 +227,10 @@ public class CourseRW {
 
     public List<Course> getAll() {
         List<Course> list = new ArrayList<>();
-        Cursor c1 = db.query(COURSE_TABLE_NAME, null, null, null, null, null, null);
+        Cursor c1;
+        synchronized(db) {
+            c1 = db.query(COURSE_TABLE_NAME, null, null, null, null, null, null);
+        }
 
         while (c1.moveToNext()) {
             Course course = getCourseRecord(c1);

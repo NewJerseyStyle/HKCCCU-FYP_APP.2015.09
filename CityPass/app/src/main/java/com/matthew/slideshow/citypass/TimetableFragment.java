@@ -63,7 +63,7 @@ public class TimetableFragment extends Fragment {
     private net networkSimple, networkDetail;
 
     CourseRW courseRW = null;
-    LoginRW loginRW = null;
+    //LoginRW loginRW = null;
 
 
     private FragmentManager fragmentManager;
@@ -317,8 +317,11 @@ public class TimetableFragment extends Fragment {
                 embedCourseIntoTable(courses.get(a), a);
             }
 
-            if (dialog.isShowing())
-                dialog.dismiss();
+            if (dialog != null) {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
 
         }
     }
@@ -784,7 +787,18 @@ public class TimetableFragment extends Fragment {
         Log.d("on destory", "timetable");
         if (courseRW != null)
             courseRW.close();
+/*
         if (loginRW != null)
             loginRW.close();
+*/
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (courseRW == null) {
+            courseRW = new CourseRW(getActivity().getApplicationContext());
+        }
     }
 }

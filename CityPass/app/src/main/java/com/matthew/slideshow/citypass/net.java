@@ -44,7 +44,7 @@ public class net {
         //loginRW.close();
     }
 
-    public void getTimeTable() throws Exception {
+    public void getTimeTable() {
         login2AIMS();
         if (error) {
             response = null;
@@ -52,14 +52,14 @@ public class net {
             return;
         }
         get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu", null);
-        get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu", "https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
-        String res = get("https://banweb.cityu.edu.hk/pls/PROD/hwsstmtbl_matrix_cityu.Show", "https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
+        get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu", last_url);
+        String res = get("https://banweb.cityu.edu.hk/pls/PROD/hwsstmtbl_matrix_cityu.Show", last_url);
         if (res.contains("<SELECT NAME=\"term_in\" SIZE=1>")) {
             int index = res.indexOf("<OPTION VALUE=\"");
             String value = res.substring(index + 15, index + 21);
             res = post("https://banweb.cityu.edu.hk/pls/PROD/hwsstmtbl_matrix_cityu.Show", "term_in="+value, "https://banweb.cityu.edu.hk/pls/PROD/hwsstmtbl_matrix_cityu.Show");
         }
-        //Log.d("Netword", "GetTimeTable: " + res);
+        Log.d("Network", "GetTimeTable: " + res);
         String data = res.trim().replaceAll(" +", " ");
         if (data.contains("No class schedule found for selected term.")) {
             response = new JSONObject();
@@ -85,6 +85,7 @@ public class net {
         }
         JSONArray jsonArray = new JSONArray();
         for (String val : timeTable) {
+            Log.d("Network", "GetTimeTable(TimeTable row): " + val);
             if (val.startsWith("</TR><TR><TD class=\"ctt-matrix-td-time\">")) {
                 time = val.substring(40, 51);
                 timeCount = Integer.parseInt(time.substring(0, time.indexOf(":"))) - 8;
@@ -137,14 +138,21 @@ public class net {
                 String theCourse = val.substring(val.indexOf(" valign=top>") + 12);
                 JSONObject singleObject = new JSONObject();
                 try {
+                    Log.d("Network", "GetTimeTable(theCourse): "+theCourse);
+                    Log.d("Network", "GetTimeTable(crn): "+theCourse.substring(0, theCourse.indexOf(" <BR>")));
                     singleObject.put("crn", theCourse.substring(0, theCourse.indexOf(" <BR>")));
                     theCourse = theCourse.substring(theCourse.indexOf(" <BR>") + 5);
                     JSONObject set = new JSONObject();
+                    Log.d("Network", "GetTimeTable(theCourse): "+theCourse);
+                    Log.d("Network", "GetTimeTable(course_code): "+theCourse.substring(0, theCourse.indexOf("-")));
                     set.put("course_code", theCourse.substring(0, theCourse.indexOf("-")));
                     theCourse = theCourse.substring(theCourse.indexOf("-") + 1);
-                    singleObject.put("section", theCourse.substring(0, val.indexOf("<BR>")));
+                    Log.d("Network", "GetTimeTable(theCourse): "+theCourse);
+                    Log.d("Network", "GetTimeTable(section): "+theCourse.substring(0, theCourse.indexOf("<BR>")));
+                    singleObject.put("section", theCourse.substring(0, theCourse.indexOf("<BR>")));
                     theCourse = theCourse.substring(theCourse.indexOf("<BR>") + 4);
                     theCourse = theCourse.replaceAll("<BR>", "");
+                    Log.d("Network", "GetTimeTable(theCourse): "+theCourse);
                     singleObject.put("location", theCourse);
                     singleObject.put("starttime", time);
                     singleObject.put("days", day + 1);
@@ -168,13 +176,49 @@ public class net {
                 return;
             }
         }
+        Log.d("Network", "JSON before formated: "+jsonArray.toString());
                         /* To format the value */
         JSONArray resultTmp = new JSONArray();
+        if (resultTmp.length() == 0) {
+            JSONObject set = new JSONObject();
+            try {
+                set.put("course_code", jsonArray.getJSONObject(0).get("course_code"));
+                JSONObject singleLesson = new JSONObject();
+                singleLesson.put("duration", jsonArray.getJSONObject(0).getJSONObject("lesson").get("duration"));
+                singleLesson.put("starttime", jsonArray.getJSONObject(0).getJSONObject("lesson").get("starttime"));
+                singleLesson.put("days", jsonArray.getJSONObject(0).getJSONObject("lesson").get("days"));
+                singleLesson.put("crn", jsonArray.getJSONObject(0).getJSONObject("lesson").get("crn"));
+                singleLesson.put("section", jsonArray.getJSONObject(0).getJSONObject("lesson").get("section"));
+                singleLesson.put("location", jsonArray.getJSONObject(0).getJSONObject("lesson").get("location"));
+                set.put("lesson", new JSONArray().put(singleLesson));
+                resultTmp.put(set);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                error = true;
+                response = null;
+                return;
+            }
+        }
         for (int i = 0; i != jsonArray.length(); i++) {
-            for (int j = resultTmp.length(); j >= 0; j--) {
-                if (j == 0) {
-                    JSONObject set = new JSONObject();
-                    try {
+            for (int j = resultTmp.length() - 1; j >= 0; j--) {
+                try {
+                    Log.d("Network", "FormatingTimeTable(j)= "+String.valueOf(j)+" ;(i)= "+String.valueOf(i));
+                    if (jsonArray.getJSONObject(i).get("course_code").equals(resultTmp.getJSONObject(j).get("course_code"))) {
+                        JSONObject set = resultTmp.getJSONObject(j);
+                        JSONObject singleLesson = new JSONObject();
+                        singleLesson.put("duration", jsonArray.getJSONObject(i).getJSONObject("lesson").get("duration"));
+                        singleLesson.put("starttime", jsonArray.getJSONObject(i).getJSONObject("lesson").get("starttime"));
+                        singleLesson.put("days", jsonArray.getJSONObject(i).getJSONObject("lesson").get("days"));
+                        singleLesson.put("crn", jsonArray.getJSONObject(i).getJSONObject("lesson").get("crn"));
+                        singleLesson.put("section", jsonArray.getJSONObject(i).getJSONObject("lesson").get("section"));
+                        singleLesson.put("location", jsonArray.getJSONObject(i).getJSONObject("lesson").get("location"));
+                        JSONArray tmp = set.getJSONArray("lesson");
+                        tmp.put(singleLesson);
+                        set.put("lesson", tmp);
+                        resultTmp.put(j, set);
+                        break;
+                    } else if (j == 0) {
+                        JSONObject set = new JSONObject();
                         set.put("course_code", jsonArray.getJSONObject(i).get("course_code"));
                         JSONObject singleLesson = new JSONObject();
                         singleLesson.put("duration", jsonArray.getJSONObject(i).getJSONObject("lesson").get("duration"));
@@ -185,33 +229,6 @@ public class net {
                         singleLesson.put("location", jsonArray.getJSONObject(i).getJSONObject("lesson").get("location"));
                         set.put("lesson", new JSONArray().put(singleLesson));
                         resultTmp.put(set);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        error = true;
-                        response = null;
-                        return;
-                    }
-                } else try {
-                    if (jsonArray.getJSONObject(i).get("course_code").equals(resultTmp.getJSONObject(j).get("course_code"))) {
-                        JSONObject set = resultTmp.getJSONObject(j);
-                        try {
-                            JSONObject singleLesson = new JSONObject();
-                            singleLesson.put("duration", jsonArray.getJSONObject(i).getJSONObject("lesson").get("duration"));
-                            singleLesson.put("starttime", jsonArray.getJSONObject(i).getJSONObject("lesson").get("starttime"));
-                            singleLesson.put("days", jsonArray.getJSONObject(i).getJSONObject("lesson").get("days"));
-                            singleLesson.put("crn", jsonArray.getJSONObject(i).getJSONObject("lesson").get("crn"));
-                            singleLesson.put("section", jsonArray.getJSONObject(i).getJSONObject("lesson").get("section"));
-                            singleLesson.put("location", jsonArray.getJSONObject(i).getJSONObject("lesson").get("location"));
-                            JSONArray tmp = set.getJSONArray("lesson");
-                            tmp.put(singleLesson);
-                            set.put("lesson", tmp);
-                            resultTmp.put(j, set);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            error = true;
-                            response = null;
-                            return;
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -221,6 +238,7 @@ public class net {
                 }
             }
         }
+        Log.d("Network", "After format: "+resultTmp.toString());
         try {
             jsonObject.put("course", resultTmp);
             response = jsonObject;
@@ -232,7 +250,7 @@ public class net {
         //logout2AIMS();
     }
 
-    public void getDetailSchedule() throws Exception {
+    public void getDetailSchedule() {
         login2AIMS();
         if (error) {
             response = null;
@@ -320,7 +338,7 @@ public class net {
         //logout2AIMS();
     }
 
-    public void getMyExaminations() throws Exception {
+    public void getMyExaminations() {
         login2AIMS();
         if (error) {
             response = null;
@@ -367,7 +385,7 @@ public class net {
         //logout2AIMS();
     }
 
-    public void getPersonalData() throws Exception {
+    public void getPersonalData() {
         login2AIMS();
         if (error) {
             response = null;
@@ -375,10 +393,10 @@ public class net {
             return;
         }
         get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu.P_AdminMnu", null);
-        get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu_cityu.P_StudStatusMnu", "https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu.P_AdminMnu");
-        String res = get("https://banweb.cityu.edu.hk/pls/PROD/hwskfste_cityu.P_RegDispStud", "https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu_cityu.P_StudStatusMnu");
+        get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu_cityu.P_StudStatusMnu", last_url);
+        String res = get("https://banweb.cityu.edu.hk/pls/PROD/hwskfste_cityu.P_RegDispStud", last_url);
         response = new JSONObject();
-        String data = res.trim().replaceAll(" +", " ").replaceAll("\n+", "");
+        String data = res.trim().replaceAll(" +", " ");
         String nameInfo = betweenStr(data, "<H3>Student Status Information for: ", ")", EXCL);
         String sid = nameInfo.substring(nameInfo.indexOf("(") + 1);
         nameInfo = nameInfo.substring(0, nameInfo.indexOf("(")).replaceAll(",", "");
@@ -388,10 +406,10 @@ public class net {
             response.put("EID", betweenStr(data, "</TD></TR><TR><TD><B>EID : </B>", "</TD></TR></TABLE><TABLE ></TABLE>", EXCL));
             response.put("Email", betweenStr(data, "</TD></TR><TR></TR><TR><TD><B>Email : </B>", "</TD></TR><TR><TD><B>EID : </B>", EXCL));
             response.put("Department", betweenStr(data, "</TD></TR><TR><TD><B>Department : </B>", "</TD></TR><TR><TD><B>Programme : </B>", EXCL));
-            response.put("Major", betweenStr(data, "</TD></TR><TR><TD><B>Major : </B>", "</TD></TR><TR><TD><B>Gender : </B>", EXCL));
+            response.put("Major", betweenStr(data, "</TABLE><TABLE ><TR><TD><B>Home Major : </B>", "</TD></TR></TABLE><TABLE ></TABLE><TABLE ><TR><TD><B>Gender : </B>", EXCL));
             response.put("Programme", betweenStr(data, "</TD></TR><TR><TD><B>Programme : </B>", "</TD></TR><TR><TD><B>Cohort : </B>", EXCL));
             response.put("Campus", betweenStr(data, "</TD></TR><TR><TD><B>Campus : </B>", "</TD></TR><TR><TD><B>Level : </B>", EXCL));
-            response.put("AcadamicStanding", betweenStr(data, "</TD></TR></TABLE><TABLE ><TR><TD><B>Academic Standing : </B>", "</TD></TR></TABLE><TABLE ><TR><TD><B>Student Status : </B>", EXCL));
+            response.put("AcadamicStanding", "");// betweenStr(data, "</TD></TR></TABLE><TABLE ><TR><TD><B>Academic Standing : </B>", "</TD></TR></TABLE><TABLE ><TR><TD><B>Student Status : </B>", EXCL));
         } catch (JSONException e) {
             e.printStackTrace();
             error = true;
@@ -400,7 +418,7 @@ public class net {
         //logout2AIMS();
     }
 
-    public void getMyAcademicRecord() throws Exception {
+    public void getMyAcademicRecord() {
         login2AIMS();
         if (error) {
             response = null;
@@ -462,7 +480,7 @@ public class net {
         //logout2AIMS();
     }
 
-    public void getMyFinance() throws Exception {
+    public void getMyFinance() {
         login2AIMS();
         if (error) {
             response = null;
@@ -565,7 +583,7 @@ public class net {
         return true;
     }
 
-    public void logout2AIMS() throws Exception {
+    public void logout2AIMS() {
         get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_Logout", last_url);
         myClient.disconnect();
     }
