@@ -29,6 +29,7 @@ public class net {
     private boolean error;
     private HttpURLConnection myClient;
     private String last_url;
+    private String extraInfo;
 
     net(Context context) {
         CookieHandler.setDefault(new CookieManager());
@@ -76,7 +77,7 @@ public class net {
         int day = 0;
         int timeCount = 0;
         String time = "";
-        JSONObject jsonObject = new JSONObject();
+        //JSONObject jsonObject = new JSONObject();
         boolean[][] summary = new boolean[7][15];
         for (int i = 0; i != 7; i++) {
             for (int j = 0; j != 15; j++) {
@@ -167,6 +168,7 @@ public class net {
                 }
                 day++;
             }
+/*
             try {
                 jsonObject.put("course", jsonArray);
             } catch (JSONException e) {
@@ -175,6 +177,7 @@ public class net {
                 response = null;
                 return;
             }
+             */
         }
         Log.d("Network", "JSON before formated: "+jsonArray.toString());
                         /* To format the value */
@@ -240,8 +243,7 @@ public class net {
         }
         Log.d("Network", "After format: "+resultTmp.toString());
         try {
-            jsonObject.put("course", resultTmp);
-            response = jsonObject;
+            response = (new JSONObject()).put("course", resultTmp);
         } catch (JSONException e) {
             e.printStackTrace();
             error = true;
@@ -251,6 +253,7 @@ public class net {
     }
 
     public void getDetailSchedule() {
+        Log.d("Network", "Exe getDetailSchedule");
         login2AIMS();
         if (error) {
             response = null;
@@ -258,7 +261,7 @@ public class net {
             return;
         }
         get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu.P_RegMnu", null);
-        String res = get("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu.P_RegMnu");
+        get("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", last_url);
         String select = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         //if (res.contains("06\">Summer ")) {
             int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -267,10 +270,11 @@ public class net {
             } else if ( month > 5 && month < 9 ) {
                 select += "06";
             } else {
+                if (month > 8) select = String.valueOf(Calendar.getInstance().get(Calendar.YEAR) - 1);
                 select += "09";
             }
         //}
-        res = post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_id="+select, "https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl");
+        String res = post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_id="+select, last_url);
         if (res == null){
             response = new JSONObject();
             return;
@@ -329,6 +333,7 @@ public class net {
             }
             jsonObject.put("course", courseDetail);
             jsonObject.put("courseName", courseName);
+            Log.d("Network", "DetailedTimeTable: "+jsonObject.toString());
             response = jsonObject;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -569,6 +574,9 @@ public class net {
         if (currentPage == null || !currentPage.contains("\"twbkwbis.P_Logout\"")) {
             error = true;
         }
+        if (currentPage.contains("Alumni Services")) {
+            extraInfo = "Alumni";
+        }
     }
 
     public boolean login(String user, String password) {
@@ -692,5 +700,9 @@ public class net {
             e.printStackTrace();
         }
         return null;
+    }
+
+    String getExtraInfo() {
+        return extraInfo;
     }
 }

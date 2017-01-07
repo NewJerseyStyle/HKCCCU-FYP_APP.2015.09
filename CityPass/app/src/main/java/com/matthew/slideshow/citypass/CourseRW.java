@@ -72,7 +72,7 @@ public class CourseRW {
     }
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
     public Course insertTimetable(Course course) {
@@ -218,9 +218,10 @@ public class CourseRW {
     public int getCourseCount() {
         int result = 0;
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + COURSE_TABLE_NAME, null);
-        if (cursor.moveToNext()) {
-            result = cursor.getInt(0);
-        }
+        result = cursor.getCount();
+        //if (cursor.moveToNext()) {
+        //    result = cursor.getInt(0);
+        //}
         cursor.close();
         return result;
     }

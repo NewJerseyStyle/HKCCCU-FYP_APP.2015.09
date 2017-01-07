@@ -57,7 +57,7 @@ public class TimetableFragment extends Fragment {
     private PopupWindow popupWindow;
     private View linearLayout;
     private View scrollView;
-    private View timetableLayout;
+    //private View timetableLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String temp_json;
     private net networkSimple, networkDetail;
@@ -156,7 +156,7 @@ public class TimetableFragment extends Fragment {
 
         linearLayout = (LinearLayout) rootView.findViewById(R.id.linearlayout);
         scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
-        timetableLayout = (TableLayout) rootView.findViewById(R.id.tableLayout);
+        //timetableLayout = (TableLayout) rootView.findViewById(R.id.tableLayout);
 
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
 
@@ -580,6 +580,7 @@ public class TimetableFragment extends Fragment {
 
         //suppose to connect to server to catch the JSON of the timetable,
         //below method "setJSONDetails()" will catch the further details
+        JSONArray jArr_course = null;
         while (networkSimple.getResponse() == null) {
             try {
                 Thread.sleep(550);
@@ -591,7 +592,7 @@ public class TimetableFragment extends Fragment {
             if (networkSimple.getError()) {
                 throw new JSONException("Error occur in network component.");
             }
-            temp_json = networkSimple.getResponse().toString();//jsonObject.get("data").toString();
+            jArr_course = networkSimple.getResponse().getJSONArray(COURSE);//jsonObject.get("data").toString();
 
             //temp_json = "";
         } catch (JSONException e) {
@@ -599,9 +600,10 @@ public class TimetableFragment extends Fragment {
         }
 
         try {
-            JSONObject j = new JSONObject(temp_json);
+            //JSONObject j = new JSONObject(temp_json);
             //   Log.d("Timetable temp json", temp_json);
-            JSONArray jArr_course = j.getJSONArray(COURSE);
+               //Log.d("Timetable temp json", networkSimple.getResponse().getJSONArray(COURSE).toString());
+            //JSONArray jArr_course = j.getJSONArray(COURSE);
             for (int a = 0; a < jArr_course.length(); a++) {
                 String course_code;
                 JSONObject j1 = jArr_course.getJSONObject(a);
@@ -677,13 +679,15 @@ public class TimetableFragment extends Fragment {
             if (networkDetail.getError()) {
                 throw new JSONException("Error occur in network component.");
             }
+            /*
             String temp = networkDetail.getResponse().toString();
             if (temp.isEmpty()) {
                 return;
             }
             temp = temp.replace("\\", "");
+            */
             // Log.d("temp", temp);
-            JSONObject jsonObject = new JSONObject(temp);
+            JSONObject jsonObject = networkDetail.getResponse();//new JSONObject(temp);
             //jsonObject = new JSONObject(jsonObject.getString("data"));
             JSONArray jsonArray = null;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
@@ -785,14 +789,18 @@ public class TimetableFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onDestroy();
         Log.d("on destory", "timetable");
-        if (courseRW != null)
+/*
+        if (courseRW != null) {
             courseRW.close();
+        }
+        */
 /*
         if (loginRW != null)
             loginRW.close();
 */
     }
 
+/*
     @Override
     public void onResume() {
         super.onResume();
@@ -801,4 +809,15 @@ public class TimetableFragment extends Fragment {
             courseRW = new CourseRW(getActivity().getApplicationContext());
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+    */
 }

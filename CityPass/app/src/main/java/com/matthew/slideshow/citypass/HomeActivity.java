@@ -31,9 +31,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
-        LoginRW loginRW = new LoginRW(getApplicationContext());
-        Log.d("user name", loginRW.getLoginName());
-        Log.d("user password", loginRW.getLoginPassword());
+        //LoginRW loginRW = new LoginRW(getApplicationContext());
+        //Log.d("user name", loginRW.getLoginName());
+        //Log.d("user password", loginRW.getLoginPassword());
         fragmentManager = getSupportFragmentManager();
         mNavigationDrawerFragment = (NavigationDrawerFragment) fragmentManager.findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
