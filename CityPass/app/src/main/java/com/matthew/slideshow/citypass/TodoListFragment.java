@@ -474,7 +474,7 @@ public class TodoListFragment extends Fragment {
         }
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -483,4 +483,5 @@ public class TodoListFragment extends Fragment {
         if (courseRW != null)
             courseRW.close();
     }
+    */
 }

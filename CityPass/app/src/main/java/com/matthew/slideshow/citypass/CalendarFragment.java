@@ -400,6 +400,7 @@ public class CalendarFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+        /*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -410,6 +411,7 @@ public class CalendarFragment extends Fragment {
         if (eventRW != null)
             eventRW.close();
     }
+                */
 }
 
 

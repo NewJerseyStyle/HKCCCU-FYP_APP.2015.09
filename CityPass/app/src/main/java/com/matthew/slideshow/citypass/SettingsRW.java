@@ -94,7 +94,7 @@ public class SettingsRW {
     }
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
     public int getCount() {

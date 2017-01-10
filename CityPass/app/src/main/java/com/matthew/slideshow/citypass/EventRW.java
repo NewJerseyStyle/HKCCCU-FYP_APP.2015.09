@@ -56,7 +56,7 @@ public class EventRW {
 
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
 

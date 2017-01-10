@@ -41,7 +41,7 @@ public class StudentDetailRW {
     }
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
     public StudentDetail insert(StudentDetail s) {

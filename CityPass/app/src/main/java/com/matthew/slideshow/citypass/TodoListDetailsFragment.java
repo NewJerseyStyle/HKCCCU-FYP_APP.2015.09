@@ -172,11 +172,12 @@ public class TodoListDetailsFragment extends Fragment {
         backTrack = getArguments().getInt("BackTrack");
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (eventRW != null)
             eventRW.close();
     }
+    */
 }

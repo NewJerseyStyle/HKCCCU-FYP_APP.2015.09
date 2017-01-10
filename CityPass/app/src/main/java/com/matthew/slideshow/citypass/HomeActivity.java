@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
+/*
     @Override
     public void onDestroy() {
         // TODO Auto-generated method stub
@@ -99,6 +99,6 @@ public class HomeActivity extends AppCompatActivity {
         SQLiteDatabase db = TodoListSQLite.getDatabase(getApplicationContext());
         db.close();
     }
-
+    */
 
 }

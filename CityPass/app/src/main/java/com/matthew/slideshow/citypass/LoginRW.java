@@ -34,7 +34,7 @@ public class LoginRW {
 
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
     public void insert(String login_name, String login_password) {

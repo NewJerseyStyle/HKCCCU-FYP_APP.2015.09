@@ -46,7 +46,7 @@ public class AnnouncementRW {
 
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
     public Announcement insertAnnouncement(Announcement a) {

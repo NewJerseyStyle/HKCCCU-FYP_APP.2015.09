@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... args) {
-            if(login.login(login_name, login_password)){
+            if(login.login(login_name, login_password) && !login.getExtraInfo().equals("Alumni")){
                 logged = true;
                 loginRW.insert(login_name, login_password);
             }
@@ -206,6 +206,18 @@ public class MainActivity extends AppCompatActivity {
             if (logged) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, HomeActivity.class);
+                if (login.getExtraInfo().equals("Alumni")) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("You are now alumni")
+                            .setMessage("The App. do not support Alumni services.\nPlease do use web page.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MainActivity.this.finish();
+                                }
+                            })
+                            .show();
+                }
                 startActivity(intent);
                 finish();
             } else {

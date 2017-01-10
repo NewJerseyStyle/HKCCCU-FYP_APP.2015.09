@@ -59,7 +59,7 @@ public class TimetableFragment extends Fragment {
     private View scrollView;
     //private View timetableLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String temp_json;
+    //private String temp_json;
     private net networkSimple, networkDetail;
 
     CourseRW courseRW = null;
@@ -142,8 +142,10 @@ public class TimetableFragment extends Fragment {
 
         Log.d("TimeTableFragment", "Initializing");
         LoginRW loginRW = new LoginRW(TimetableFragment.this.getContext());
+        /*
         final String login_name = loginRW.getLoginName();
         final String login_password = loginRW.getLoginPassword();
+        */
         try {
             networkSimple = new net(getActivity().getApplicationContext());
             networkDetail = new net(getActivity().getApplicationContext());
@@ -294,15 +296,15 @@ public class TimetableFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... args) {
-            try {
-                networkSimple.getTimeTable();
-                networkDetail.getDetailSchedule();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-
             if (firstTime) {
+                try {
+                    networkSimple.getTimeTable();
+                    networkDetail.getDetailSchedule();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+
                 setJSONTimetable();
             }
 
@@ -334,7 +336,6 @@ public class TimetableFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... args) {
-
             try {
                 networkSimple.getTimeTable();
                 networkDetail.getDetailSchedule();
@@ -394,7 +395,7 @@ public class TimetableFragment extends Fragment {
             int time1 = course.getTimeShift(b);
             int day1 = course.getDaysShift(b);
             int backgroundColor = backgroundColor(a);
-            String str = course.getCourse_code() + " \n"
+            String str = course.getCourse_code() + '\n'
                     + course.getLessonSection(b) + '\n'
                     + course.getLessonLocation(b);
 
@@ -404,7 +405,7 @@ public class TimetableFragment extends Fragment {
             temp1.setTextSize(9);
 
             temp1.setTypeface(Typeface.DEFAULT_BOLD);
-            temp1.setPadding(15, 15, 15, 15);// set course padding
+            temp1.setPadding(10, 15, 10, 15);// set course padding
             course.setColor(backgroundColor);
             temp1.setBackgroundColor(backgroundColor);
 

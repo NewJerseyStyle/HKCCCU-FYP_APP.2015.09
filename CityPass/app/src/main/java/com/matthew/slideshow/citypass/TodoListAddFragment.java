@@ -403,7 +403,7 @@ public class TodoListAddFragment extends DialogFragment {
         backTrack = getArguments().getInt("BackTrack");
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -411,7 +411,7 @@ public class TodoListAddFragment extends DialogFragment {
             eventRW.close();
 
     }
-
+*/
 }
 
 

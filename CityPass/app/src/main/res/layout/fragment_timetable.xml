@@ -20,11 +20,11 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/tableLayout"
                 android:stretchColumns="*"
                 android:shrinkColumns="*"
-                android:isScrollContainer="true"></TableLayout>
+                android:isScrollContainer="true" />
         </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 

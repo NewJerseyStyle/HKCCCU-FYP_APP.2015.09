@@ -56,7 +56,7 @@ public class HolidayRW {
 
 
     public void close() {
-        db.close();
+        //db.close();
     }
 
 

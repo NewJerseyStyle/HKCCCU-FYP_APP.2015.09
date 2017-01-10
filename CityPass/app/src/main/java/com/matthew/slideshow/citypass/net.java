@@ -261,7 +261,10 @@ public class net {
             return;
         }
         get("https://banweb.cityu.edu.hk/pls/PROD/twbkwbis.P_GenMenu?name=amenu.P_RegMnu", null);
-        get("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", last_url);
+        Log.d("NetRecieved(Detailed)", "Start Get");
+        String res = get("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", last_url);
+        Log.d("NetRecieved(Detailed)", "End");
+
         String select = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         //if (res.contains("06\">Summer ")) {
             int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
@@ -269,12 +272,21 @@ public class net {
                 select += "02";
             } else if ( month > 5 && month < 9 ) {
                 select += "06";
-            } else {
-                if (month > 8) select = String.valueOf(Calendar.getInstance().get(Calendar.YEAR) - 1);
+            } else if (month > 8) {
                 select += "09";
+            } else {
+                select += "02";
+                if (!res.contains(select)) {
+                    select = String.valueOf(Calendar.getInstance().get(Calendar.YEAR) - 1) + "09";
+                }
             }
         //}
-        String res = post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_id="+select, last_url);
+        if (!res.contains(select)) {
+            select = betweenStr(res, "<OPTION VALUE=\"", "\">", EXCL);
+        }
+        Log.d("NetRecieved(Detailed)", "Start Post");
+        post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_in="+select, last_url);
+        Log.d("NetRecieved(Detailed)", "End");
         if (res == null){
             response = new JSONObject();
             return;

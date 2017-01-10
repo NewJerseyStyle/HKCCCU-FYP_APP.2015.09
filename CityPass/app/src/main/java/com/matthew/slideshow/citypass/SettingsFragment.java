@@ -178,7 +178,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -188,6 +188,6 @@ public class SettingsFragment extends Fragment {
             courseRW.close();
         if (settingsRW != null)
             settingsRW.close();
-
     }
+    */
 }

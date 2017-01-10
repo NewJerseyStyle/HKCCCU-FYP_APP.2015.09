@@ -214,12 +214,13 @@ public class ExamTimetableFragment extends Fragment {
         }
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (loginRW != null)
             loginRW.close();
     }
+        */
 
 }

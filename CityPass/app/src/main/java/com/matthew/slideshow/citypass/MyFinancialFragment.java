@@ -150,14 +150,14 @@ public class MyFinancialFragment extends Fragment {
         }
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (loginRW != null)
             loginRW.close();
     }
-
+*/
    /* private Runnable getJson = new Runnable()
     {
         @Override

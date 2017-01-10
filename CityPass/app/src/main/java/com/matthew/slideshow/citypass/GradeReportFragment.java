@@ -200,11 +200,12 @@ public class GradeReportFragment extends Fragment {
         return null;
     }
 
-
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (loginRW != null)
             loginRW.close();
     }
+    */
 }
