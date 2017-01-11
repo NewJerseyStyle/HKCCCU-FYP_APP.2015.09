@@ -32,17 +32,20 @@ public class net {
     private String extraInfo;
 
     net(Context context) {
-        CookieHandler.setDefault(new CookieManager());
-        String test = get("https://banweb.cityu.edu.hk/pls/PROD/twgkpswd_cityu.P_WWWLogin", null);
-        assert test != null;
-        if(!test.contains("<INPUT TYPE=\"submit\" VALUE=\" Login \" class=\"input_button\">")) {
-            error = true;
-        }
         LoginRW loginRW = new LoginRW(context);
         name = loginRW.getLoginName();
         pass = loginRW.getLoginPassword();
         response = null;
         //loginRW.close();
+        CookieHandler.setDefault(new CookieManager());
+        String test = get("https://banweb.cityu.edu.hk/pls/PROD/twgkpswd_cityu.P_WWWLogin", null);
+        if (test == null) {
+            error = true;
+            return;
+        }
+        if(!test.contains("<INPUT TYPE=\"submit\" VALUE=\" Login \" class=\"input_button\">")) {
+            error = true;
+        }
     }
 
     public void getTimeTable() {
@@ -285,7 +288,7 @@ public class net {
             select = betweenStr(res, "<OPTION VALUE=\"", "\">", EXCL);
         }
         Log.d("NetRecieved(Detailed)", "Start Post");
-        post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_in="+select, last_url);
+        res = post("https://banweb.cityu.edu.hk/pls/PROD/bwskfshd.P_CrseSchdDetl", "term_in="+select, last_url);
         Log.d("NetRecieved(Detailed)", "End");
         if (res == null){
             response = new JSONObject();
@@ -303,13 +306,15 @@ public class net {
         JSONObject scheduledMeetingTimes = new JSONObject();
         try {
             jsonObject.put("TotalCreditHours", betweenStr(data, "Total Credit Hours: ", "<BR>", EXCL));
-            String[] courses = data.split("<TABLE CLASS=\"datadisplaytable\" SUMMARY=\"This layout table is used to present the schedule course detail\" cellspacing=\"0\" cellpadding=2><CAPTION class=\"captiontext\">");
+            data = data.substring(data.indexOf("<TABLE  CLASS=\"datadisplaytable\" SUMMARY=\"This layout table is used to present the schedule course detail\" cellspacing=\"0\" cellpadding=2>"));
+            String[] courses = data.split("<TABLE  CLASS=\"datadisplaytable\" SUMMARY=\"This layout table is used to present the schedule course detail\" cellspacing=\"0\" cellpadding=2>");
             Hashtable<String, String> tmpHash = new Hashtable<>();
             for (String val : courses) {
+                Log.d("Network_Detail_item", val);
                 String a = val.substring(0, val.indexOf("</CAPTION>"));
                 a = a.substring(0, a.indexOf("-", a.indexOf("-") + 1));
                 if (!(a.contains("<") && a.contains(">") && a.contains("/"))) {
-                    data = data.replaceAll("</TR>", "").replaceAll("<TR>", "");
+                    a = a.replaceAll("</TR>", "").replaceAll("<TR>", "");
                     if (!tmpHash.containsKey(a)) {
                         tmpHash.put(a, a);
                         courseName.put(a);

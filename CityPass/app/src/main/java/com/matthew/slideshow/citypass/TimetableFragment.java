@@ -332,6 +332,12 @@ public class TimetableFragment extends Fragment {
     class RefreshTable extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
+            if (networkSimple == null) {
+                networkSimple = new net(getActivity().getApplicationContext());
+            }
+            if (networkDetail == null) {
+                networkDetail = new net(getActivity().getApplicationContext());
+            }
         }
 
         @Override
